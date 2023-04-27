@@ -16,7 +16,7 @@ limitations under the License.
 
 package sets
 
-import "github.tools.sap/cs-devops/go-generics/maps"
+import "github.com/sap/go-generics/maps"
 
 // Set.
 type Set[T comparable] struct {

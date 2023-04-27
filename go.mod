@@ -1,3 +1,3 @@
-module github.tools.sap/cs-devops/go-generics
+module github.com/sap/go-generics
 
 go 1.19
