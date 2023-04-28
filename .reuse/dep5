@@ -1,5 +1,5 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: go-generics 
+Upstream-Name: go-generics
 Upstream-Contact: SAP_ERP4SME_DevOps@sap.com
 Source: https://github.com/sap/go-generics
 Disclaimer: The code in this project may include calls to APIs ("API Calls") of
