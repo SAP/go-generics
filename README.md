@@ -1,5 +1,7 @@
 # Go Generics Library
 
+[![REUSE status](https://api.reuse.software/badge/github.com/SAP/go-generics)](https://api.reuse.software/info/github.com/SAP/go-generics)
+
 ## About this project
 
 Go module providing generic reuse types and functions for standard data structures, such as slices, maps, sets, ...
