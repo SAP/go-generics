@@ -114,3 +114,13 @@ func Uniq[T comparable](s []T) (r []T) {
 	}
 	return
 }
+
+// Collect (map) slice through given function.
+func Collect[S any, T any](s []S, f func(S) T) (r []T) {
+	l := len(s)
+	r = make([]T, l)
+	for i, x := range s {
+		r[i] = f(x)
+	}
+	return
+}
