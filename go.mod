@@ -1,3 +1,3 @@
 module github.com/sap/go-generics
 
-go 1.19
+go 1.21
