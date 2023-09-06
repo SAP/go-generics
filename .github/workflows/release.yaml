@@ -20,7 +20,7 @@ on:
   schedule:
     - cron: '10 9 * * 3'
     - cron: '10 11 * * 3'
-    - cron: '10 13 * * 3'
+    - cron: '10 12 * * 3'
 
 concurrency: trigger-release
 
@@ -70,7 +70,7 @@ jobs:
       if: github.event_name == 'schedule'
       run: |
         git fetch --tags
-        echo "count=$(git rev-list --count --no-merges ${{ steps.get_current_release.outputs.version }}..HEAD --before=1.hour)" >> $GITHUB_OUTPUT
+        echo "count=$(git rev-list --count --no-merges ${{ steps.get_current_release.outputs.tag }}..HEAD --before=1.hour)" >> $GITHUB_OUTPUT
 
     - name: Determine target release
       id: get_target_release
