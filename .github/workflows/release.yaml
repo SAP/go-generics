@@ -18,9 +18,7 @@ on:
         default: ''
 
   schedule:
-    - cron: '10 9 * * 3'
-    - cron: '10 11 * * 3'
-    - cron: '10 12 * * 3'
+    - cron: '10 */2 * * 3'
 
 concurrency: trigger-release
 
