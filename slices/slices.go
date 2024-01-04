@@ -31,6 +31,24 @@ func Remove[T comparable](s []T, x T) (r []T) {
 	return
 }
 
+// Get first n elements of a slice.
+func First[T any](s []T, n uint) []T {
+	i := int(n)
+	if i > len(s) {
+		i = len(s)
+	}
+	return s[:i]
+}
+
+// Get last n elements of a slice.
+func Last[T any](s []T, n uint) []T {
+	i := len(s) - int(n)
+	if i < 0 {
+		i = 0
+	}
+	return s[i:]
+}
+
 // Reverse slice.
 func Reverse[T any](s []T) (r []T) {
 	if s == nil {
