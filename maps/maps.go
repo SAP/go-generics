@@ -47,3 +47,15 @@ func Equal[K comparable, V comparable](m map[K]V, n map[K]V) bool {
 	}
 	return EqualBy(m, n, f)
 }
+
+// Collect map through given function.
+func Collect[K comparable, V any, W any](m map[K]V, f func(V) W) map[K]W {
+	if m == nil {
+		return nil
+	}
+	n := make(map[K]W)
+	for k, v := range m {
+		n[k] = f(v)
+	}
+	return n
+}
