@@ -1,0 +1,25 @@
+name: Publish artifacts
+
+on:
+  release:
+    types: [published]
+
+concurrency: release-${{ github.event.release.tag_name }}
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  publish-go-module:
+    name: Publish go module
+    runs-on: ubuntu:22.04
+
+    steps:
+    - name: Trigger registration on sum.golang.org
+      run: |
+        curl -sSf \
+          --max-time 30 \
+          --retry 5 \
+          --retry-max-time 300 \
+          https://sum.golang.org/lookup/github.com/${{ github.repository }}@${{ github.event.release.tag_name }}
