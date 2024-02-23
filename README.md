@@ -6,7 +6,7 @@
 
 Go module providing generic reuse types and functions for standard data structures, such as slices, maps, sets, ...
 
-This module might be superseded/replaced in future by [https://pkg.go.dev/golang.org/x/exp](https://pkg.go.dev/golang.org/x/exp) which provides similar functionality. Developers are encouraged to use this repository even now, if sufficient for the respective purpose.
+This module might be superseded/replaced in future by [https://pkg.go.dev/golang.org/x/exp](https://pkg.go.dev/golang.org/x/exp) which provides similar functionality. Developers are encouraged to use the upstream repository even now, if sufficient for the respective purpose.
 
 ## Support, Feedback, Contributing
 

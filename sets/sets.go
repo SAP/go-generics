@@ -13,12 +13,21 @@ type Set[T comparable] struct {
 }
 
 // Create new set.
-func New[T comparable](x ...T) *Set[T] {
+func New[T comparable](x ...T) Set[T] {
 	s := Set[T]{m: make(map[T]struct{})}
 	for _, y := range x {
 		s.m[y] = struct{}{}
 	}
-	return &s
+	return s
+}
+
+// Clone set.
+func Clone[T comparable](s Set[T]) Set[T] {
+	t := Set[T]{m: make(map[T]struct{})}
+	for x := range s.m {
+		t.m[x] = struct{}{}
+	}
+	return t
 }
 
 // Get number of elements in the set.
@@ -27,6 +36,7 @@ func Len[T comparable](s Set[T]) int {
 }
 
 // Get values of set as slice; order is not predictable.
+// Will return an empty non-nil slice in case the set is empty.
 func Values[T comparable](s Set[T]) []T {
 	return maps.Keys(s.m)
 }
