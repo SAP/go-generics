@@ -18,8 +18,10 @@ jobs:
     steps:
     - name: Trigger registration on sum.golang.org
       run: |
+        repository=${{ github.repository }}
+        tag=${{ github.event.release.tag_name }}
         curl -sSf \
           --max-time 30 \
           --retry 5 \
           --retry-max-time 300 \
-          https://sum.golang.org/lookup/github.com/${{ github.repository }}@${{ github.event.release.tag_name }}
+          https://sum.golang.org/lookup/github.com/${repository,,}@${tag}
