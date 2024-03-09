@@ -405,6 +405,27 @@ var _ = Describe("slices", func() {
 		})
 	})
 
+	Describe("tests for Select()", func() {
+		Context("with a nil slice", func() {
+			It("should return nil", func() {
+				Expect(slices.Select(nilSlice, func(int) bool { return true })).To(Equal(nilSlice))
+			})
+		})
+		Context("with an empty slice", func() {
+			It("should return en empty slice", func() {
+				Expect(slices.Select(emptySlice, func(int) bool { return true })).To(Equal(emptySlice))
+			})
+		})
+		Context("with a more complex slice", func() {
+			It("should return a slice containing the selected elements", func() {
+				f := func(x int) bool {
+					return x%2 != 0
+				}
+				Expect(slices.Select(sliceD, f)).To(Equal([]int{9, 5, 3, 7, 7, 1}))
+			})
+		})
+	})
+
 	Describe("tests for Any()", func() {
 		Context("with a nil slice", func() {
 			It("should return false", func() {

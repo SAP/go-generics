@@ -26,6 +26,7 @@ func Remove[T comparable](s []T, x T) (r []T) {
 	if s == nil {
 		return
 	}
+	// TODO: would it be better to pre-allocate with len(s) and re-slice at the end?
 	r = make([]T, 0)
 	for _, y := range s {
 		if y == x {
@@ -149,6 +150,7 @@ func UniqBy[S any, T comparable](s []S, f func(S) T) (r []S) {
 	if s == nil {
 		return
 	}
+	// TODO: would it be better to pre-allocate with len(s) and re-slice at the end?
 	r = make([]S, 0)
 	m := make(map[T]struct{})
 	for _, x := range s {
@@ -173,7 +175,7 @@ func Uniq[T comparable](s []T) (r []T) {
 
 // Collect (map) slice through given function.
 // If the input is nil, it will return nil; if the input is empty, it will return an empty slice.
-// Otherweise, it will return return a slice of the same length as the input slice, containing the
+// Otherweise, it will return a slice of the same length as the input slice, containing the
 // elements mapped through the provided function f.
 func Collect[S any, T any](s []S, f func(S) T) (r []T) {
 	if s == nil {
@@ -182,6 +184,24 @@ func Collect[S any, T any](s []S, f func(S) T) (r []T) {
 	r = make([]T, len(s))
 	for i, x := range s {
 		r[i] = f(x)
+	}
+	return
+}
+
+// Select slice by given function.
+// If the input is nil, it will return nil; if the input is empty, it will return an empty slice.
+// Otherweise, it will return a new slice containing those elements of the input slice, for which
+// the provided function f evalutes to true.
+func Select[T any](s []T, f func(T) bool) (r []T) {
+	if s == nil {
+		return nil
+	}
+	// TODO: would it be better to pre-allocate with len(s) and re-slice at the end?
+	r = make([]T, 0)
+	for _, x := range s {
+		if f(x) {
+			r = append(r, x)
+		}
 	}
 	return
 }
