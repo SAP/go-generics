@@ -164,11 +164,50 @@ var _ = Describe("maps", func() {
 			})
 		})
 		Context("with a more complex map", func() {
-			It("should return a map containing the mapped valuese", func() {
+			It("should return a map containing the mapped values", func() {
 				f := func(x float64) int {
 					return int(x)
 				}
 				Expect(maps.Collect(mapC, f)).To(Equal(map[int]int{1: 2, 2: 3}))
+			})
+		})
+	})
+
+	Describe("tests for Select()", func() {
+		Context("with a nil map", func() {
+			It("should return nil", func() {
+				Expect(maps.Select(nilMap, func(int, string) bool { return true })).To(Equal(nilMap))
+			})
+		})
+		Context("with an empty map", func() {
+			It("should return en empty map", func() {
+				Expect(maps.Select(emptyMap, func(int, string) bool { return true })).To(Equal(emptyMap))
+			})
+		})
+		Context("with a more complex map", func() {
+			It("should return a map containing the selected elements", func() {
+				f := func(k int, v string) bool {
+					return k <= 1 || v == "w"
+				}
+				Expect(maps.Select(mapB, f)).To(Equal(map[int]string{1: "u", 3: "w", 4: "w"}))
+			})
+		})
+	})
+
+	Describe("tests for SelectByKeys()", func() {
+		Context("with a nil map", func() {
+			It("should return nil", func() {
+				Expect(maps.SelectByKeys(nilMap, 1, 2, 3)).To(Equal(nilMap))
+			})
+		})
+		Context("with an empty map", func() {
+			It("should return en empty map", func() {
+				Expect(maps.SelectByKeys(emptyMap, 1, 2, 3)).To(Equal(emptyMap))
+			})
+		})
+		Context("with a more complex map", func() {
+			It("should return a map containing the selected elements", func() {
+				Expect(maps.SelectByKeys(mapB, 1, 2, 3)).To(Equal(map[int]string{1: "u", 2: "v", 3: "w"}))
 			})
 		})
 	})

@@ -80,3 +80,37 @@ func Collect[K comparable, V any, W any](m map[K]V, f func(V) W) map[K]W {
 	}
 	return n
 }
+
+// Select sub-map from map by given function.
+// If the input is nil, it will return nil; if the input is empty, it will return an empty map.
+// Otherwise, it will return a map containing the keys and according values, for which the provided
+// function f evaluates to true.
+func Select[K comparable, V any](m map[K]V, f func(K, V) bool) map[K]V {
+	if m == nil {
+		return nil
+	}
+	n := make(map[K]V)
+	for k, v := range m {
+		if f(k, v) {
+			n[k] = v
+		}
+	}
+	return n
+}
+
+// Select sub-map from map by the given keys.
+// If the input is nil, it will return nil; if the input is empty, it will return an empty map.
+// Otherwise, it will return a map containing those keys and according values, if existing in the input map;
+// Keys which do not exist in the input map will be ignored.
+func SelectByKeys[K comparable, V any](m map[K]V, keys ...K) map[K]V {
+	if m == nil {
+		return nil
+	}
+	n := make(map[K]V)
+	for _, k := range keys {
+		if v, ok := m[k]; ok {
+			n[k] = v
+		}
+	}
+	return n
+}
