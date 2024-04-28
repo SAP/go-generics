@@ -8,6 +8,7 @@ package sets
 import "github.com/sap/go-generics/maps"
 
 // Set.
+// Always create sets with the New() function, do not use unininizialized sets (i.e. sets having the zero value).
 type Set[T comparable] struct {
 	m map[T]struct{}
 }
