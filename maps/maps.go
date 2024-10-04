@@ -8,7 +8,7 @@ package maps
 // Get keys of map.
 // If the input is nil, it will return a nil slice; otherwise, if the input is empty, it will return an empty slice.
 // Otherwise it will return a slice containing the keys of the given map.
-// Note that there is not guarantee about the order of the returned keys.
+// Note that there is no guarantee about the order of the returned keys.
 func Keys[K comparable, V any](m map[K]V) []K {
 	if m == nil {
 		return nil
@@ -25,7 +25,7 @@ func Keys[K comparable, V any](m map[K]V) []K {
 // Get values of map.
 // If the input is nil, it will return a nil slice; otherwise, if the input is empty, it will return an empty slice.
 // Otherwise it will return a slice containing the values of the given map (repeating identical values, if any).
-// Note that there is not guarantee about the order of the returned values.
+// Note that there is no guarantee about the order of the returned values.
 func Values[K comparable, V any](m map[K]V) []V {
 	if m == nil {
 		return nil
@@ -113,4 +113,14 @@ func SelectByKeys[K comparable, V any](m map[K]V, keys ...K) map[K]V {
 		}
 	}
 	return n
+}
+
+// Count elements for which the given boolean function evaluates to true.
+func Count[K comparable, V any](m map[K]V, f func(K, V) bool) (c int) {
+	for k, v := range m {
+		if f(k, v) {
+			c++
+		}
+	}
+	return
 }

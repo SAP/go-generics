@@ -119,7 +119,7 @@ var _ = Describe("slices", func() {
 		})
 
 		Context("with an empty slice (first 0)", func() {
-			It("should return en empty slice", func() {
+			It("should return an empty slice", func() {
 				Expect(slices.First(emptySlice, 0)).To(Equal(emptySlice))
 			})
 		})
@@ -135,7 +135,7 @@ var _ = Describe("slices", func() {
 		})
 
 		Context("with a slice of length 3 (first 0)", func() {
-			It("should return en empty slice", func() {
+			It("should return an empty slice", func() {
 				Expect(slices.First(sliceB, 0)).To(Equal(emptySlice))
 			})
 		})
@@ -174,7 +174,7 @@ var _ = Describe("slices", func() {
 		})
 
 		Context("with an empty slice (last 0)", func() {
-			It("should return en empty slice", func() {
+			It("should return an empty slice", func() {
 				Expect(slices.Last(emptySlice, 0)).To(Equal(emptySlice))
 			})
 		})
@@ -190,7 +190,7 @@ var _ = Describe("slices", func() {
 		})
 
 		Context("with a slice of length 3 (last 0)", func() {
-			It("should return en empty slice", func() {
+			It("should return an empty slice", func() {
 				Expect(slices.Last(sliceB, 0)).To(Equal(emptySlice))
 			})
 		})
@@ -218,7 +218,7 @@ var _ = Describe("slices", func() {
 			})
 		})
 		Context("with an empty slice", func() {
-			It("should return en empty slice", func() {
+			It("should return an empty slice", func() {
 				Expect(slices.Reverse(emptySlice)).To(Equal(emptySlice))
 			})
 		})
@@ -236,7 +236,7 @@ var _ = Describe("slices", func() {
 			})
 		})
 		Context("with an empty slice", func() {
-			It("should return en empty slice", func() {
+			It("should return an empty slice", func() {
 				Expect(slices.SortBy(emptySlice, func(int, int) bool { return false })).To(Equal(emptySlice))
 			})
 		})
@@ -270,7 +270,7 @@ var _ = Describe("slices", func() {
 			})
 		})
 		Context("with an empty slice", func() {
-			It("should return en empty slice", func() {
+			It("should return an empty slice", func() {
 				Expect(slices.Sort(emptySlice)).To(Equal(emptySlice))
 			})
 		})
@@ -352,7 +352,7 @@ var _ = Describe("slices", func() {
 			})
 		})
 		Context("with an empty slice", func() {
-			It("should return en empty slice", func() {
+			It("should return an empty slice", func() {
 				Expect(slices.UniqBy(emptySlice, func(int) bool { return false })).To(Equal(emptySlice))
 			})
 		})
@@ -373,7 +373,7 @@ var _ = Describe("slices", func() {
 			})
 		})
 		Context("with an empty slice", func() {
-			It("should return en empty slice", func() {
+			It("should return an empty slice", func() {
 				Expect(slices.Uniq(emptySlice)).To(Equal(emptySlice))
 			})
 		})
@@ -391,7 +391,7 @@ var _ = Describe("slices", func() {
 			})
 		})
 		Context("with an empty slice", func() {
-			It("should return en empty slice", func() {
+			It("should return an empty slice", func() {
 				Expect(slices.Collect(emptySlice, func(int) int { return -1 })).To(Equal(emptySlice))
 			})
 		})
@@ -412,7 +412,7 @@ var _ = Describe("slices", func() {
 			})
 		})
 		Context("with an empty slice", func() {
-			It("should return en empty slice", func() {
+			It("should return an empty slice", func() {
 				Expect(slices.Select(emptySlice, func(int) bool { return true })).To(Equal(emptySlice))
 			})
 		})
@@ -438,13 +438,13 @@ var _ = Describe("slices", func() {
 			})
 		})
 		Context("with a more complex slice", func() {
-			It("should detect that slice contains a number greather than 2", func() {
+			It("should detect that slice contains a number greater than 2", func() {
 				f := func(x int) bool {
 					return x > 2
 				}
 				Expect(slices.Any(sliceB, f)).To(BeTrue())
 			})
-			It("should detect that slice contains no number greather than 3", func() {
+			It("should detect that slice contains no number greater than 3", func() {
 				f := func(x int) bool {
 					return x > 3
 				}
@@ -492,7 +492,7 @@ var _ = Describe("slices", func() {
 			})
 		})
 		Context("with a more complex slice", func() {
-			It("should detect that slice contains no numbers greather than 3", func() {
+			It("should detect that slice contains no numbers greater than 3", func() {
 				f := func(x int) bool {
 					return x > 3
 				}
@@ -503,6 +503,27 @@ var _ = Describe("slices", func() {
 					return x > 2
 				}
 				Expect(slices.None(sliceB, f)).To(BeFalse())
+			})
+		})
+	})
+
+	Describe("tests for Count()", func() {
+		Context("with a nil slice", func() {
+			It("should return zero", func() {
+				Expect(slices.Count(nilSlice, func(int) bool { return true })).To(Equal(0))
+			})
+		})
+		Context("with an empty slice", func() {
+			It("should return zero", func() {
+				Expect(slices.Count(emptySlice, func(int) bool { return true })).To(Equal(0))
+			})
+		})
+		Context("with a more complex slice", func() {
+			It("should detect that slice contains 4 numbers greater than 6", func() {
+				f := func(x int) bool {
+					return x > 6
+				}
+				Expect(slices.Count(sliceD, f)).To(Equal(4))
 			})
 		})
 	})

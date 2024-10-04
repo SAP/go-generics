@@ -242,3 +242,13 @@ func None[T any](s []T, f func(T) bool) bool {
 	}
 	return true
 }
+
+// Count elements for which the given boolean function evaluates to true.
+func Count[T any](s []T, f func(T) bool) (c int) {
+	for _, x := range s {
+		if f(x) {
+			c++
+		}
+	}
+	return
+}
