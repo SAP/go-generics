@@ -159,7 +159,7 @@ var _ = Describe("maps", func() {
 			})
 		})
 		Context("with an empty map", func() {
-			It("should return en empty map", func() {
+			It("should return an empty map", func() {
 				Expect(maps.Collect(emptyMap, func(string) string { return "" })).To(Equal(emptyMap))
 			})
 		})
@@ -180,7 +180,7 @@ var _ = Describe("maps", func() {
 			})
 		})
 		Context("with an empty map", func() {
-			It("should return en empty map", func() {
+			It("should return an empty map", func() {
 				Expect(maps.Select(emptyMap, func(int, string) bool { return true })).To(Equal(emptyMap))
 			})
 		})
@@ -201,13 +201,34 @@ var _ = Describe("maps", func() {
 			})
 		})
 		Context("with an empty map", func() {
-			It("should return en empty map", func() {
+			It("should return an empty map", func() {
 				Expect(maps.SelectByKeys(emptyMap, 1, 2, 3)).To(Equal(emptyMap))
 			})
 		})
 		Context("with a more complex map", func() {
 			It("should return a map containing the selected elements", func() {
 				Expect(maps.SelectByKeys(mapB, 1, 2, 3)).To(Equal(map[int]string{1: "u", 2: "v", 3: "w"}))
+			})
+		})
+	})
+
+	Describe("tests for Count()", func() {
+		Context("with a nil map", func() {
+			It("should return zero", func() {
+				Expect(maps.Count(nilMap, func(int, string) bool { return true })).To(Equal(0))
+			})
+		})
+		Context("with an empty map", func() {
+			It("should return zero", func() {
+				Expect(maps.Count(emptyMap, func(int, string) bool { return true })).To(Equal(0))
+			})
+		})
+		Context("with a more complex map", func() {
+			It("should detect that map contains 2 elements matching the given condition", func() {
+				f := func(k int, v string) bool {
+					return k <= 1 || v == "w"
+				}
+				Expect(maps.Count(mapB, f)).To(Equal(3))
 			})
 		})
 	})
