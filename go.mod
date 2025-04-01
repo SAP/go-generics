@@ -1,6 +1,6 @@
 module github.com/sap/go-generics
 
-go 1.24.1
+go 1.24.2
 
 require (
 	github.com/onsi/ginkgo/v2 v2.23.3
