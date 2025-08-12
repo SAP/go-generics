@@ -81,6 +81,22 @@ func Collect[K comparable, V any, W any](m map[K]V, f func(V) W) map[K]W {
 	return n
 }
 
+// Collect slice into map through given function.
+// If the input is nil, it will return nil; if the input is empty, it will return an empty map.
+// Otherweise, it will return return a map of the same length as the input slice, having keys and values,
+// as mapped through the provided function f. If f produces duplicate keys, the according latter values win.
+func CollectSlice[T any, K comparable, V any](s []T, f func(T) (K, V)) map[K]V {
+	if s == nil {
+		return nil
+	}
+	m := make(map[K]V)
+	for _, x := range s {
+		k, v := f(x)
+		m[k] = v
+	}
+	return m
+}
+
 // Select sub-map from map by given function.
 // If the input is nil, it will return nil; if the input is empty, it will return an empty map.
 // Otherwise, it will return a map containing the keys and according values, for which the provided

@@ -26,6 +26,9 @@ var _ = Describe("maps", func() {
 	var mapB map[int]string
 	var mapC map[int]float64
 	var mapD map[int]string
+	var nilSlice []float64
+	var emptySlice []float64
+	var sliceA []float64
 
 	BeforeEach(func() {
 		nilMap = nil
@@ -34,6 +37,8 @@ var _ = Describe("maps", func() {
 		mapB = map[int]string{1: "u", 2: "v", 3: "w", 4: "w"}
 		mapC = map[int]float64{1: 2.1, 2: 3.14}
 		mapD = map[int]string{1: "2.1", 2: "3.14"}
+		emptySlice = []float64{}
+		sliceA = []float64{1.52, 2.0, 3.88, 3.99}
 	})
 
 	AfterEach(func() {
@@ -169,6 +174,27 @@ var _ = Describe("maps", func() {
 					return int(x)
 				}
 				Expect(maps.Collect(mapC, f)).To(Equal(map[int]int{1: 2, 2: 3}))
+			})
+		})
+	})
+
+	Describe("tests for CollectSlice()", func() {
+		Context("with a nil slice", func() {
+			It("should return nil", func() {
+				Expect(maps.CollectSlice(nilSlice, func(float64) (int, string) { return 0, "" })).To(Equal(nilMap))
+			})
+		})
+		Context("with an empty slice", func() {
+			It("should return an empty map", func() {
+				Expect(maps.CollectSlice(emptySlice, func(float64) (int, string) { return 0, "" })).To(Equal(emptyMap))
+			})
+		})
+		Context("with a more complex slice", func() {
+			It("should return a map containing the mapped values", func() {
+				f := func(x float64) (int, string) {
+					return int(x), strconv.FormatFloat(x, 'f', 1, 64)
+				}
+				Expect(maps.CollectSlice(sliceA, f)).To(Equal(map[int]string{1: "1.5", 2: "2.0", 3: "4.0"}))
 			})
 		})
 	})
