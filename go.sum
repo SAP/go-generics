@@ -54,6 +54,8 @@ github.com/onsi/ginkgo/v2 v2.25.3 h1:Ty8+Yi/ayDAGtk4XxmmfUy4GabvM+MegeB4cDLRi6nw
 github.com/onsi/ginkgo/v2 v2.25.3/go.mod h1:43uiyQC4Ed2tkOzLsEYm7hnrb7UJTWHYNsuy3bG/snE=
 github.com/onsi/ginkgo/v2 v2.26.0 h1:1J4Wut1IlYZNEAWIV3ALrT9NfiaGW2cDCJQSFQMs/gE=
 github.com/onsi/ginkgo/v2 v2.26.0/go.mod h1:qhEywmzWTBUY88kfO0BRvX4py7scov9yR+Az2oavUzw=
+github.com/onsi/ginkgo/v2 v2.27.1 h1:0LJC8MpUSQnfnp4n/3W3GdlmJP3ENGF0ZPzjQGLPP7s=
+github.com/onsi/ginkgo/v2 v2.27.1/go.mod h1:wmy3vCqiBjirARfVhAqFpYt8uvX0yaFe+GudAqqcCqA=
 github.com/onsi/gomega v1.34.2 h1:pNCwDkzrsv7MS9kpaQvVb1aVLahQXyJ/Tv5oAZMI3i8=
 github.com/onsi/gomega v1.34.2/go.mod h1:v1xfxRgk0KIsG+QOdm7p8UosrOzPYRo60fd3B/1Dukc=
 github.com/onsi/gomega v1.36.1 h1:bJDPBO7ibjxcbHMgSCoo4Yj18UWbKDlLwX1x9sybDcw=
