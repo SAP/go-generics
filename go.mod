@@ -3,7 +3,7 @@ module github.com/sap/go-generics
 go 1.25.3
 
 require (
-	github.com/onsi/ginkgo/v2 v2.27.1
+	github.com/onsi/ginkgo/v2 v2.27.2
 	github.com/onsi/gomega v1.38.2
 )
 
