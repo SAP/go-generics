@@ -1,5 +1,5 @@
 /*
-SPDX-FileCopyrightText: 2024 SAP SE or an SAP affiliate company and go-generics contributors
+SPDX-FileCopyrightText: 2026 SAP SE or an SAP affiliate company and go-generics contributors
 SPDX-License-Identifier: Apache-2.0
 */
 
