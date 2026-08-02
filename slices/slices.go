@@ -252,3 +252,11 @@ func Count[T any](s []T, f func(T) bool) (c int) {
 	}
 	return
 }
+
+// Reduce slice by given initial value and function.
+func Reduce[T any, V any](s []T, v V, f func(V, T) V) V {
+	for _, x := range s {
+		v = f(v, x)
+	}
+	return v
+}

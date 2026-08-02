@@ -527,4 +527,22 @@ var _ = Describe("slices", func() {
 			})
 		})
 	})
+
+	Describe("tests for Reduce()", func() {
+		Context("with a nil slice", func() {
+			It("should return the initial value", func() {
+				Expect(slices.Reduce(nilSlice, 2.0, func(v float64, x int) float64 { return v + float64(x) })).To(Equal(2.0))
+			})
+		})
+		Context("with an empty slice", func() {
+			It("should return the initial value", func() {
+				Expect(slices.Reduce(emptySlice, 3.5, func(v float64, x int) float64 { return v + float64(x) })).To(Equal(3.5))
+			})
+		})
+		Context("with a more complex slice", func() {
+			It("should return the correct reduced value", func() {
+				Expect(slices.Reduce(sliceB, 1.1, func(v float64, x int) float64 { return v + float64(x) })).To(Equal(7.1))
+			})
+		})
+	})
 })
