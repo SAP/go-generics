@@ -5,7 +5,11 @@ SPDX-License-Identifier: Apache-2.0
 
 package sets
 
-import "github.com/sap/go-generics/maps"
+import (
+	"iter"
+
+	"github.com/sap/go-generics/maps"
+)
 
 // Set.
 // Always create sets with the New() function, do not use unininizialized sets (i.e. sets having the zero value).
@@ -40,6 +44,17 @@ func Len[T comparable](s Set[T]) int {
 // Will return an empty non-nil slice in case the set is empty.
 func Values[T comparable](s Set[T]) []T {
 	return maps.Keys(s.m)
+}
+
+// Return an interator over the set.
+func Iter[T comparable](s Set[T]) iter.Seq[T] {
+	return func(yield func(T) bool) {
+		for x := range s.m {
+			if !yield(x) {
+				return
+			}
+		}
+	}
 }
 
 // Check if set contains specified element.
