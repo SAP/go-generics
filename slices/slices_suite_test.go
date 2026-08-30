@@ -99,6 +99,11 @@ var _ = Describe("slices", func() {
 				Expect(slices.Remove(sliceC, 2)).To(Equal([]int{1, 3, 1, 3}))
 			})
 		})
+		Context("with multiple elements removed", func() {
+			It("should return the slice without the elements", func() {
+				Expect(slices.Remove(sliceD, 3, 7, 10)).To(Equal([]int{9, 6, 5, 6, 1, 2, 8}))
+			})
+		})
 	})
 
 	Describe("tests for First()", func() {

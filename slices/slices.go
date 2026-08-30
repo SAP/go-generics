@@ -20,16 +20,16 @@ func Contains[T comparable](s []T, x T) bool {
 	return false
 }
 
-// Remove all occurrences of given element from slice (and return new slice; old slice remains unchanged).
+// Remove all occurrences of given elements from slice (and return new slice; old slice remains unchanged).
 // If the input is nil, it will return nil; otherwise, if the result is empty, it will return an empty slice.
-func Remove[T comparable](s []T, x T) (r []T) {
+func Remove[T comparable](s []T, x ...T) (r []T) {
 	if s == nil {
 		return
 	}
 	// TODO: would it be better to pre-allocate with len(s) and re-slice at the end?
 	r = make([]T, 0)
 	for _, y := range s {
-		if y == x {
+		if Contains(x, y) {
 			continue
 		}
 		r = append(r, y)
